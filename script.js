@@ -250,16 +250,85 @@ function extractColumn(matrix, columnIndex) {
 //   44
 
 function binaryToDecimal(binaryString) {
-    // Use parseInt with base 2 to convert the binary string to decimal
-    var decimalNumber = parseInt(binaryString, 2);
+
+    let decimalNumber = parseInt(binaryString, 2);
   
     return decimalNumber;
   }
   
-  // Example usage:
-  var binaryString = "1101";
-  var decimalNumber = binaryToDecimal(binaryString);
+  let binaryString = "1101";
+  let decimalNumber = binaryToDecimal(binaryString);
   console.log("Decimal equivalent:", decimalNumber);
+
+
+//   47
+
+function deepCopyJaggedArray(arr) {
+    if (!Array.isArray(arr)) {
+      return arr;
+    }
+  
+    let newArr = [];
+  
+    for (let i = 0; i < arr.length; i++) {
+      newArr[i] = deepCopyJaggedArray(arr[i]);
+    }
+  
+    return newArr;
+  }
+  
+  let originalArray = [1, [2, 3], [4, [5, 6]]];
+  let copiedArray = deepCopyJaggedArray(originalArray);
+  
+  originalArray[0] = 100;
+  
+  console.log(originalArray);
+  console.log(copiedArray); 
+  
+//   49
+
+function shuffleArray(array) {
+    let shuffledArray = array.slice();
+
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+
+    }
+    return shuffledArray;
+  }
+  
+  let originalArray = ["apple", "banana", "cherry", "date", "elderberry"];
+  let shuffledArray = shuffleArray(originalArray);
+  
+  console.log(originalArray);
+  console.log(shuffledArray); 
+
+// 50
+
+function generateUniqueRandomNumbers(n) {
+    if (n <= 0) {
+      console.error("Iltimos, 0 dan katta musbat son bering.");
+      return [];
+    }
+    let numbersArray = Array.from({ length: n }, (_, index) => index + 1);
+
+    for (let i = numbersArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
+    }
+    return numbersArray.slice(0, n);
+  }
+  
+  let n = prompt("number");
+  let result = generateUniqueRandomNumbers(n);
+  console.log(result);
+
+
+
+  
+  
+
   
   
 
